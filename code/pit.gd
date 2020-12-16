@@ -22,7 +22,7 @@ func _process(delta):
 			if hostile(collider):
 				damage(collider, tick_dmg)
 	# descale occasionally
-	if fmod(time, 0.7) <= delta:
+	if fmod(time, 1.5) <= delta:
 			self.scale *= 0.9
 	# destroy sprite if scale becomes too small
 	if self.scale.x < 0.5:

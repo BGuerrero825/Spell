@@ -14,6 +14,8 @@ func _ready():
 	dmg_tick = 0.4
 	area = get_node("Area2D")
 	sprite = get_node("Sprite")
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# search for first target in front of caster
@@ -28,7 +30,6 @@ func _process(delta):
 	# flip sprite for animation
 	if fmod(time, 0.15) <= delta:
 		flip_sprite_v()
-		112
 	# kill node when key released
 	if Input.is_action_just_released("key_2"):
 		queue_free()

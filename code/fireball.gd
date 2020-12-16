@@ -19,16 +19,8 @@ func _ready():
 	released = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	# if fireball has collided, destroy self
-	if collisions > 0:
-		queue_free()
-	# if fireball has hit ground, create fire pit and destroy self
-	if grounded > 0:
-		var firepit = FIREPIT.instance()
-		get_parent().add_child(firepit)
-		firepit.position = self.position
-		queue_free()	
+func _process(delta):	
+	check_collision()
 	# fireball charge-up
 	if Input.is_action_pressed(key) and !released:
 		traj -= G * 0.5 * delta
@@ -46,3 +38,14 @@ func _process(delta):
 	# flip sprite for animation
 	if fmod(time, 0.10) <= delta:
 		get_node("Sprite").flip_v = !get_node("Sprite").flip_v
+
+func check_collision():
+	# if fireball has collided, destroy self
+	if collisions > 0:
+		queue_free()
+	# if fireball has hit ground, create fire pit and destroy self
+	if grounded > 0:
+		var firepit = FIREPIT.instance()
+		get_parent().add_child(firepit)
+		firepit.position = self.position
+		queue_free()
