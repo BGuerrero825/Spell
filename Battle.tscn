@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://objects/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Wizard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ActiveText.gd" type="Script" id=3]
+[ext_resource path="res://code/Test.gd" type="Script" id=4]
+[ext_resource path="res://theme/Simple24.tres" type="DynamicFont" id=5]
+[ext_resource path="res://code/Tome.tscn" type="PackedScene" id=6]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Ground" type="ColorRect" parent="."]
+margin_top = 60.0
+margin_right = 384.0
+margin_bottom = 180.0
+color = Color( 0.223529, 0.243137, 0.262745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="Ground"]
+self_modulate = Color( 0.12549, 0.117647, 0.117647, 1 )
+margin_top = -60.0
+margin_right = 384.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wizard2" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 32, 68 )
+scale = Vector2( 1.7, 1.7 )
+
+[node name="Sprites" parent="Wizard2" index="0"]
+frame = 4
+
+[node name="Wizard" parent="." instance=ExtResource( 2 )]
+position = Vector2( 96, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="Sprites" parent="Wizard" index="0"]
+position = Vector2( 0, -2 )
+frame = 4
+
+[node name="Wood" type="ColorRect" parent="."]
+margin_top = 148.0
+margin_right = 384.0
+margin_bottom = 180.0
+color = Color( 0.356863, 0.270588, 0.227451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enemy" parent="." instance=ExtResource( 1 )]
+position = Vector2( 184, 48 )
+script = null
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Tome" parent="." instance=ExtResource( 6 )]
+position = Vector2( 224, 160 )
+
+[node name="Bar" type="ColorRect" parent="."]
+margin_left = 124.0
+margin_top = 184.0
+margin_right = 209.0
+margin_bottom = 190.0
+rect_rotation = -90.0
+color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellPower" type="ColorRect" parent="Bar"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 84.0
+margin_bottom = 5.0
+color = Color( 0.521569, 0.309804, 0.717647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 128.0
+margin_top = 76.0
+margin_right = 236.0
+margin_bottom = 96.0
+custom_fonts/normal_font = ExtResource( 5 )
+custom_colors/default_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+bbcode_enabled = true
+scroll_active = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Wizard2"]
+
+[editable path="Wizard"]
