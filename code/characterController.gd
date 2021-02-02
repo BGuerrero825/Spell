@@ -2,6 +2,7 @@ extends Node2D
 
 var spell_power
 const ICICLE = preload("res://objects/Icicle.tscn")
+const FIREBALL = preload("res://objects/Fireball.tscn")
 const ENEMY = preload("res://objects/Enemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -26,3 +27,9 @@ func on_Tome_spell_typed(spell):
 		get_parent().add_child(icicle)
 		icicle.position = self.position + Vector2(0, -15)
 		spell_power -= 5
+	if spell == "fireball":
+		var fireball = FIREBALL.instance()
+		fireball.init($hand_pos.get_global_transform().get_origin(), get_parent().get_node("Enemy").get_global_transform().get_origin())
+		get_parent().add_child(fireball)
+		fireball.position = $hand_pos.get_global_transform().get_origin()
+		spell_power -= 10

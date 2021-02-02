@@ -2,7 +2,7 @@
 
 [ext_resource path="res://objects/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/Wizard.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ActiveText.gd" type="Script" id=3]
+[ext_resource path="res://code/ActiveText.gd" type="Script" id=3]
 [ext_resource path="res://code/Test.gd" type="Script" id=4]
 [ext_resource path="res://theme/Simple24.tres" type="DynamicFont" id=5]
 [ext_resource path="res://code/Tome.tscn" type="PackedScene" id=6]
@@ -31,17 +31,15 @@ __meta__ = {
 visible = false
 position = Vector2( 32, 68 )
 scale = Vector2( 1.7, 1.7 )
-
-[node name="Sprites" parent="Wizard2" index="0"]
-frame = 4
+script = null
 
 [node name="Wizard" parent="." instance=ExtResource( 2 )]
 position = Vector2( 96, 100 )
 scale = Vector2( 2, 2 )
+z_index = 1
 
 [node name="Sprites" parent="Wizard" index="0"]
 position = Vector2( 0, -2 )
-frame = 4
 
 [node name="Wood" type="ColorRect" parent="."]
 margin_top = 148.0

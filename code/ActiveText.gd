@@ -8,7 +8,7 @@ var word_array := []
 
 func _ready():
 	OS.set_ime_active(true)
-	file.open("res://test_list.txt", file.READ)
+	file.open("res://word_list.txt", file.READ)
 	while not file.eof_reached():
 		word_array.append(file.get_line())
 	var content = file.get_as_text()
@@ -17,7 +17,6 @@ func _ready():
 func _unhandled_input(event: InputEvent) -> void:
 	#if event is a key pres and if still pressed and not a repeat (held)
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
-		print(event.scancode, "   ", event.unicode)
 		# save as a string
 		var key_typed = PoolByteArray([event.unicode]).get_string_from_utf8()
 		# if space entered, check powerup list
